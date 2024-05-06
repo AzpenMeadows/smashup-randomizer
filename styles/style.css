@@ -1,0 +1,6 @@
+
+
+
+.hide-empty:not(:has(ul > li)) {
+    display: none;
+}
