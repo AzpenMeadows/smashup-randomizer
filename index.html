@@ -9,50 +9,51 @@
 <body>
     <main>
         <section class="randomizer">
-            <h1 class="randomizer__title">Smash Up Randomizer</h1>
-            <div class="expansions">
-                <h2>Chooose your expansions:</h2>
-                <div id="js-expansions__list-el" class="expansions__list">
-
-                    <label for="js-expan-core-el">Smash Up Core</label>
-                    <input id="js-expan-core-el" type="checkbox" autocomplete="off">
-                    <label for="js-expan-pretty-el">Pretty Pretty Smash Up</label>
-                    <input id="js-expan-pretty-el" type="checkbox" autocomplete="off">
+            <div class="container">
+                <h1 class="heading">Smash Up Randomizer</h1>
+                <div class="expansions">
+                    <h2 class="heading">Chooose your expansions:</h2>
+                    <div id="js-expansions__list-el" class="expansions__list">
+                        <label for="js-expan-core-el">Smash Up Core</label>
+                        <input id="js-expan-core-el" type="checkbox" autocomplete="off">
+                        <label for="js-expan-pretty-el">Pretty Pretty Smash Up</label>
+                        <input id="js-expan-pretty-el" type="checkbox" autocomplete="off">
+                    </div>
                 </div>
-            </div>
-            <div class="players">
-                <h2>How many players?</h2>
-                <label for="js-player-ct-two">2</label>
-                <input id="js-player-ct-two" type="radio" name="player-count" value="2" autocomplete="off">
-                <label for="js-player-ct-three">3</label>
-                <input id="js-player-ct-three" type="radio" name="player-count" value="3" autocomplete="off">
-                <label for="js-player-ct-four">4</label>
-                <input id="js-player-ct-four" type="radio" name="player-count" value="4" autocomplete="off">
-            </div>
-            <button id="js-randomize-btn" type="button">Randomize</button>
-            <div class="factions">
-                <div class="hide-empty">
-                    <h3>Player 1</h3>
-                    <ul id="js-factions__player1-el">
-                    </ul>
+                <div class="players">
+                    <h2 class="heading">How many players?</h2>
+                    <label for="js-player-ct-two">2</label>
+                    <input id="js-player-ct-two" type="radio" name="player-count" value="2" autocomplete="off">
+                    <label for="js-player-ct-three">3</label>
+                    <input id="js-player-ct-three" type="radio" name="player-count" value="3" autocomplete="off">
+                    <label for="js-player-ct-four">4</label>
+                    <input id="js-player-ct-four" type="radio" name="player-count" value="4" autocomplete="off">
                 </div>
-                <div class="hide-empty">
-                    <h3>Player 2</h3>
-                    <ul id="js-factions__player2-el">
-
-                    </ul>
+                <div>
+                    <p id="js-alert" class="alert"></p>
+                    <button id="js-randomize-btn" type="button">Randomize</button>
                 </div>
-                <div class="hide-empty">
-                    <h3>Player 3</h3>
-                    <ul id="js-factions__player3-el">
-
-                    </ul>
-                </div>
-                <div class="hide-empty">
-                    <h3>Player 4</h3>
-                    <ul id="js-factions__player4-el">
-
-                    </ul>
+                <div class="factions">
+                    <div class="hide-empty">
+                        <h3 class="heading">Player 1</h3>
+                        <ul id="js-factions__player1-el">
+                        </ul>
+                    </div>
+                    <div class="hide-empty">
+                        <h3 class="heading">Player 2</h3>
+                        <ul id="js-factions__player2-el">
+                        </ul>
+                    </div>
+                    <div class="hide-empty">
+                        <h3 class="heading">Player 3</h3>
+                        <ul id="js-factions__player3-el">
+                        </ul>
+                    </div>
+                    <div class="hide-empty">
+                        <h3 class="heading">Player 4</h3>
+                        <ul id="js-factions__player4-el">
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

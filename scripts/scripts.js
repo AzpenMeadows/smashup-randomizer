@@ -16,6 +16,7 @@ const player1El = document.querySelector("#js-factions__player1-el")
 const player2El = document.querySelector("#js-factions__player2-el")
 const player3El = document.querySelector("#js-factions__player3-el")
 const player4El = document.querySelector("#js-factions__player4-el")
+const alertEl = document.querySelector("#js-alert")
 
 expanCoreEl.addEventListener("change", function() {
     activeArray = expanCore
@@ -41,18 +42,37 @@ btnEl.addEventListener("click", function () {
     let htmlPlayer2 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
     let htmlPlayer3 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
     let htmlPlayer4 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
+    let htmlReset = ``
+    player1El.innerHTML = htmlReset
+    player2El.innerHTML = htmlReset
+    player3El.innerHTML = htmlReset
+    player4El.innerHTML = htmlReset
+    alertEl.textContent = ""
     if (playerCt2El.checked) {
         player1El.innerHTML = htmlPlayer1
         player2El.innerHTML = htmlPlayer2
+        player3El.innerHTML = htmlReset
+        player4El.innerHTML = htmlReset
     } else if (playerCt3El.checked) {
-        player1El.innerHTML = htmlPlayer1
-        player2El.innerHTML = htmlPlayer2
-        player3El.innerHTML = htmlPlayer3
+        if (factionList.length >= 6) {
+            player1El.innerHTML = htmlPlayer1
+            player2El.innerHTML = htmlPlayer2
+            player3El.innerHTML = htmlPlayer3
+            player4El.innerHTML = htmlReset
+        } else {
+        alertEl.textContent = "Not enough factions. Please select another expansion"
+        }
     } else if (playerCt4El.checked) {
-        player1El.innerHTML = htmlPlayer1
-        player2El.innerHTML = htmlPlayer2
-        player3El.innerHTML = htmlPlayer3
-        player4El.innerHTML = htmlPlayer4
+        if (factionList.length >= 8) {
+            player1El.innerHTML = htmlPlayer1
+            player2El.innerHTML = htmlPlayer2
+            player3El.innerHTML = htmlPlayer3
+            player4El.innerHTML = htmlPlayer4
+        } else {
+        alertEl.textContent = "Not enough factions. Please select another expansion"
+        }
+    } else {
+        alertEl.textContent = "Please select number of players"
     }
 })
 
@@ -77,6 +97,7 @@ function getFaction() {
 }
 
 function setPool() {
+    pool = []
     for(let i = 0; i < factionList.length; i++) {
         pool.push(factionList[i])
 }

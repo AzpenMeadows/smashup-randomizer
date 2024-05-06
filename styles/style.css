@@ -1,4 +1,47 @@
+:root {
+    --clr-background-body: hsl(207, 22%, 10%);
+    --clr-background-randomizer: hsl(208, 22%, 12%);
+}
 
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    color: white;
+    background-color: var(--clr-background-body);
+}
+
+main {
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.randomizer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: max-content;
+    padding: 3rem;
+    background-color: var(--clr-background-randomizer);
+    translate: -50% -50%;
+}
+
+.heading {
+    font-size: 2em;
+}
 
 
 .hide-empty:not(:has(ul > li)) {
