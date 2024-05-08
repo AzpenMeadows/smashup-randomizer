@@ -302,15 +302,7 @@ expanTeensEl.addEventListener("change", function() {
     }
 })
 
-// touchscreen compatibility
-// =================================================
-btnEl.addEventListener('touchstart', () => {});
-btnEl.addEventListener('touchend', () => {});
-btnEl.addEventListener('touchcancel', () => {});
-btnEl.addEventListener('touchmove', () => {});
-// =================================================
-
-btnEl.addEventListener("click", function () {
+btnEl.addEventListener("mousedown", function () {
     setPool()
     let htmlPlayer1 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
     let htmlPlayer2 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
