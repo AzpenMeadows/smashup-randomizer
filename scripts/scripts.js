@@ -305,9 +305,6 @@ expanTeensEl.addEventListener("change", function() {
 btnEl.addEventListener("click", function () {
     renderFactions()
 })
-btnEl.addEventListener("touchend", function() {
-    renderFactions()
-})
 
 function renderFactions() {
     setPool()
