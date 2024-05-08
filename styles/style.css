@@ -36,8 +36,8 @@ label {
 
 input {
     position: absolute;
-    height: 0;
-    width: 0;
+    left: -99999px;
+    opacity: 0;
 }
 
 ul {
@@ -54,7 +54,7 @@ ul {
 
 .randomizer {
     width: 90%;
-    max-width: 40rem;
+    max-width: 50rem;
     padding-block: 2rem;
     margin-block: 3rem;
     margin-inline: auto;
@@ -90,7 +90,7 @@ ul {
 .expansions__list {
     --gap: .5rem;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--gap);
 }
 
@@ -162,7 +162,6 @@ ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    padding-left: 3rem;
 }
 
 .alert {
@@ -181,4 +180,16 @@ ul {
     padding: 0;
     margin: -1px;
     overflow: hidden;
+}
+
+@media screen and (max-width: 820px) {
+    .expansions__list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .factions {
+        grid-template-columns: 1fr;
+    }
 }
