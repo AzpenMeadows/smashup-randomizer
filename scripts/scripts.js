@@ -302,7 +302,14 @@ expanTeensEl.addEventListener("change", function() {
     }
 })
 
-btnEl.addEventListener("mousedown", function () {
+btnEl.addEventListener("click", function () {
+    renderFactions()
+})
+btnEl.addEventListener("touchend", function() {
+    renderFactions()
+})
+
+function renderFactions() {
     setPool()
     let htmlPlayer1 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
     let htmlPlayer2 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
@@ -340,7 +347,7 @@ btnEl.addEventListener("mousedown", function () {
     } else {
         alertEl.textContent = "Please select number of players"
     }
-})
+}
 
 function addExpan() {
     for(let i = 0; i < activeArray.length; i++) {

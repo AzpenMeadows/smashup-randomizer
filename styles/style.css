@@ -135,15 +135,16 @@ ul {
 }
 
 .btn {
-    padding: .5em 1.5em;
+    display: block;
+    max-width: max-content;
     margin-block: 1rem;
-    font-family: inherit;
+    padding: .5em 1.5em;
     font-size: 1.2rem;
     font-weight: 900;
     letter-spacing: .1em;
+    text-decoration: none;
     color: var(--clr-background-body);
     background-color: var(--clr-background-input--checked);
-    border: none;
     border-radius: 25vw;
 }
 
