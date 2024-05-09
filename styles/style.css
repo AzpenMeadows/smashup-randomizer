@@ -106,9 +106,6 @@ ul {
     font-weight: bold;
     background-color: var(--clr-background-input);
     border-radius: 25vw;
-}
-
-.label:hover {
     cursor: pointer;
 }
 
@@ -135,6 +132,7 @@ ul {
 }
 
 .btn {
+    position: relative;
     display: block;
     max-width: max-content;
     margin-block: 1rem;
@@ -146,6 +144,14 @@ ul {
     color: var(--clr-background-body);
     background-color: var(--clr-background-input--checked);
     border-radius: 25vw;
+    cursor: pointer;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 }
 
 .btn:active {
@@ -164,10 +170,6 @@ ul {
     font-weight: bold;
 }
 
-.hide-empty:not(:has(ul > li)) {
-    display: none;
-}
-
 .sr-only {
     position: absolute;
     width: 1px;
@@ -177,11 +179,10 @@ ul {
     overflow: hidden;
 }
 
-@media screen and (min-width: 821px) {
+@media (hover: hover) and (pointer: fine) {
     .btn:hover {
-    cursor: pointer;
-    opacity: .8;
-    color: white;
+        opacity: .8;
+        color: white;
     }
 }
 

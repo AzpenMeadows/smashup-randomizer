@@ -308,10 +308,10 @@ btnEl.addEventListener("click", function () {
 
 function renderFactions() {
     setPool()
-    let htmlPlayer1 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
-    let htmlPlayer2 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
-    let htmlPlayer3 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
-    let htmlPlayer4 = `<li>${getFaction()}</li><li>${getFaction()}</li>`
+    let htmlPlayer1 = `<h3 class="heading heading--small">Player 2</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
+    let htmlPlayer2 = `<h3 class="heading heading--small">Player 2</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
+    let htmlPlayer3 = `<h3 class="heading heading--small">Player 3</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
+    let htmlPlayer4 = `<h3 class="heading heading--small">Player 4</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
     let htmlReset = ``
     player1El.innerHTML = htmlReset
     player2El.innerHTML = htmlReset
