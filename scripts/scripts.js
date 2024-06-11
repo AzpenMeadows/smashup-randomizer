@@ -1,374 +1,228 @@
+let players = [
+    {
+        name: "Player 1",
+        docEl: document.querySelector("#js-factions__player1-el")
+    },
+    {
+        name: "Player 2",
+        docEl: document.querySelector("#js-factions__player2-el")
+    },
+    {
+        name: "Player 3",
+        docEl: document.querySelector("#js-factions__player3-el")
+    },
+    {
+        name: "Player 4",
+        docEl: document.querySelector("#js-factions__player4-el"),
+    }
+]
+
+let expansions = [
+    {
+        name: "Smash up Core",
+        factions: ["Aliens", "Dinosaurs", "Ninjas", "Pirates", "Robots", "Tricksters", "Wizards", "Zombies"],
+        docEl: document.querySelector("#js-expan-core-el")
+    },
+    {
+        name: "10th Anniversary",
+        factions: ["Skeletons", "Mermaids", "World Champs"],
+        docEl: document.querySelector("#js-expan-10th-anniversary-el")
+    },
+    {
+        name: "Excellent Movies Dudes!",
+        factions: ["Action Heroes", "Backtimers", "Extramorphs", "Wraithrustlers"],
+        docEl: document.querySelector("#js-expan-movies-el")
+    },
+    {
+        name: "Awesome Level 9000",
+        factions: ["Bear Cavalry", "Ghosts", "Killer Plants", "Steampunks"],
+        docEl: document.querySelector("#js-expan-awesome9000-el")
+    },
+    {
+        name: "Science Fiction",
+        factions: ["Cyborg Apes", "Shapeshifters", "Super Spies", "Time Travelers"],
+        docEl: document.querySelector("#js-expan-science-fiction-el")
+    },
+    {
+        name: "Monster Smash",
+        factions: ["Giant Ants", "Mad Scientists", "Vampires", "Werewolves"],
+        docEl: document.querySelector("#js-expan-monster-smash-el")
+    },
+    {
+        name: "Pretty Pretty Smash Up",
+        factions: ["Fairies", "Kitty Cats", "Mythic Horses", "Princesses"],
+        docEl: document.querySelector("#js-expan-pretty-el")
+    },
+    {
+        name: "It's Your Fault!",
+        factions: ["Dragons", "Mythic Greeks", "Sharks", "Tornadoes", "Superheroes"],
+        docEl: document.querySelector("#js-expan-its-your-fault-el")
+    },
+    {
+        name: "Cease and Desist",
+        factions: ["Star Roamers", "Astro Knights", "Changerbots", "Ignobles"],
+        docEl: document.querySelector("#js-expan-cease-desist-el")
+    },
+    {
+        name: "What Were We Thinking?",
+        factions: ["Teddy Bears", "Grandmas", "RockStars", "Explorers"],
+        docEl: document.querySelector("#js-expan-what-we-thinking-el")
+    },
+    {
+        name: "Big in Japan",
+        factions: ["Kaiju", "Magical Girls", "Mega Troopers", "Itty Critters"],
+        docEl: document.querySelector("#js-expan-big-japan-el")
+    },
+    {
+        name: "That '70s Expansion",
+        factions: ["Truckers", "Disco Dancers", "Vigilantes", "Kung Fu Fighters"],
+        docEl: document.querySelector("#js-expan-that-70s-el")
+    },
+    {
+        name: "Oops You Did It Again",
+        factions: ["Vikings", "Cowboys", "Ancient Egyptians", "Samurai"],
+        docEl: document.querySelector("#js-expan-oops-again-el")
+    },
+    {
+        name: "World Tour: International Incident",
+        factions: ["Luchadors", "Mounties", "Musketeers", "Sumo Wrestlers"],
+        docEl: document.querySelector("#js-expan-wt-international-el")
+    },
+    {
+        name: "World Tour: Culture Shock",
+        factions: ["Anansi Tales", "Acient Incas", "Grimms' Fairy Tales", "Polynesian Voyagers", "Russian Fairy Tales"],
+        docEl: document.querySelector("#js-expan-wt-culture-el")
+    },
+    {
+        name: "The Obligatory Cthulhu Set",
+        factions: ["Elder Things", "Innsmouth", "Cthulhu Cultists", "Miskatonic University"],
+        docEl: document.querySelector("#js-expan-cthulhu-el")
+    },
+    {
+        name: "Munchkin",
+        factions: ["Clerics", "Dwarves", "Elves", "Halflings", "Mages", "Orcs", "Thieves", "Warriors"],
+        docEl: document.querySelector("#js-expan-munchkin-el")
+    },
+    {
+        name: "Marvel",
+        factions: ["Avengers", "Hydra", "Kree", "Masters of Evil", "S.H.I.E.L.D.", "Sinister Six", "Spider-Verse", "Ultimates"],
+        docEl: document.querySelector("#js-expan-marvel-el")
+    },
+    {
+        name: "Disney",
+        factions: ["Aladdin", "Beauty and the Beast", "Big Hero 6", "Frozen", "Mulan", "The Lion King", "The Nightmare Before Christmas", "Wreck-It-Ralph"],
+        docEl: document.querySelector("#js-expan-disney-el")
+    },
+    {
+        name: "Geeks",
+        factions: ["Geeks"],
+        docEl: document.querySelector("#js-expan-geeks-el")
+    },
+    {
+        name: "Smashup All-Stars",
+        factions: ["All-Stars"],
+        docEl: document.querySelector("#js-expan-all-stars-el")
+    },
+    {
+        name: "Sheep",
+        factions: ["Sheep"],
+        docEl: document.querySelector("#js-expan-sheep-el")
+    },
+    {
+        name: "Penguins",
+        factions: ["Penguins"],
+        docEl: document.querySelector("#js-expan-penguins-el")
+    },
+    {
+        name: "Goblins",
+        factions: ["Goblins"],
+        docEl: document.querySelector("#js-expan-goblins-el")
+    },
+    {
+        name: "Knights of the Round Table",
+        factions: ["Knights of the Round Table"],
+        docEl: document.querySelector("#js-expan-knights-el")
+    },
+    {
+        name: "Teens",
+        factions: ["Teens"],
+        docEl: document.querySelector("#js-expan-teens-el")
+    },
+]
+
 let factionList = []
-let pool = []
-let activeArray
+let playerCT = 0
+let alertEl = document.querySelector("#js-alert")
+let btnEl = document.querySelector("#js-randomize-btn")
 
-const expanCore = ["Aliens", "Dinosaurs", "Ninjas", "Pirates", "Robots", "Tricksters", "Wizards", "Zombies"]
-const expan10thAnniversary = ["Skeletons", "Mermaids", "World Champs"]
-const expanMovies = ["Action Heroes", "Backtimers", "Extramorphs", "Wraithrustlers"]
-const expanAwesome9000 = ["Bear Cavalry", "Ghosts", "Killer Plants", "Steampunks"]
-const expanScienceFiction = ["Cyborg Apes", "Shapeshifters", "Super Spies", "Time Travelers"]
-const expanMonsterSmash = ["Giant Ants", "Mad Scientists", "Vampires", "Werewolves"]
-const expanPretty = ["Fairies", "Kitty Cats", "Mythic Horses", "Princesses"]
-const expanItsYourFault = ["Dragons", "Mythic Greeks", "Sharks", "Tornadoes", "Superheroes"]
-const expanCeaseDesist = ["Star Roamers", "Astro Knights", "Changerbots", "Ignobles"]
-const expanWhatWeThinking = ["Teddy Bears", "Grandmas", "RockStars", "Explorers"]
-const expanBigJapan = ["Kaiju", "Magical Girls", "Mega Troopers", "Itty Critters"]
-const expanThat70s = ["Truckers", "Disco Dancers", "Vigilantes", "Kung Fu Fighters"]
-const expanOopsAgain = ["Vikings", "Cowboys", "Ancient Egyptians", "Samurai"]
-const expanWtInternational = ["Luchadors", "Mounties", "Musketeers", "Sumo Wrestlers"]
-const expanWtCulture = ["Anansi Tales", "Acient Incas", "Grimms' Fairy Tales", "Polynesian Voyagers", "Russian Fairy Tales"]
-const expanCthulhu = ["Elder Things", "Innsmouth", "Cthulhu Cultists", "Miskatonic University"]
-const expanMunchkin = ["Clerics", "Dwarves", "Elves", "Halflings", "Mages", "Orcs", "Thieves", "Warriors"]
-const expanMarvel = ["Avengers", "Hydra", "Kree", "Masters of Evil", "S.H.I.E.L.D.", "Sinister Six", "Spider-Verse", "Ultimates"]
-const expanDisney = ["Aladdin", "Beauty and the Beast", "Big Hero 6", "Frozen", "Mulan", "The Lion King", "The Nightmare Before Christmas", "Wreck-It-Ralph"]
-const expanGeeks = ["Geeks"]
-const expanAllStars = ["All-Stars"]
-const expanSheep = ["Sheep"]
-const expanPenguins = ["Pengiuns"]
-const expanGoblins = ["Goblins"]
-const expanKnights = ["Knights of the Round Table"]
-const expanTeens = ["Teens"]
-
-const expanListEl = document.querySelector("#js-expansions__list-el")
-const expanCoreEl = document.querySelector("#js-expan-core-el")
-const expan10thAnniversaryEl = document.querySelector("#js-expan-10th-anniversary-el")
-const expanMoviesEl = document.querySelector("#js-expan-movies-el")
-const expanAwesome9000El = document.querySelector("#js-expan-awesome9000-el")
-const expanScienceFictionEl = document.querySelector("#js-expan-science-fiction-el")
-const expanMonsterSmashEl = document.querySelector("#js-expan-monster-smash-el")
-const expanPrettyEl = document.querySelector("#js-expan-pretty-el")
-const expanItsYourFaultEl = document.querySelector("#js-expan-its-your-fault-el")
-const expanCeaseDesistEl = document.querySelector("#js-expan-cease-desist-el")
-const expanWhatWeThinkingEl = document.querySelector("#js-expan-what-we-thinking-el")
-const expanBigJapanEl = document.querySelector("#js-expan-big-japan-el")
-const expanThat70sEl = document.querySelector("#js-expan-that-70s-el")
-const expanOopsAgainEl = document.querySelector("#js-expan-oops-again-el")
-const expanWtInternationalEl = document.querySelector("#js-expan-wt-international-el")
-const expanWtCultureEl = document.querySelector("#js-expan-wt-culture-el")
-const expanCthulhuEl = document.querySelector("#js-expan-cthulhu-el")
-const expanMunchkinEl = document.querySelector("#js-expan-munchkin-el")
-const expanMarvelEl = document.querySelector("#js-expan-marvel-el")
-const expanDisneyEl = document.querySelector("#js-expan-disney-el")
-const expanGeeksEl = document.querySelector("#js-expan-geeks-el")
-const expanAllStarsEl = document.querySelector("#js-expan-all-stars-el")
-const expanSheepEl = document.querySelector("#js-expan-sheep-el")
-const expanPenguinsEl = document.querySelector("#js-expan-penguins-el")
-const expanGoblinsEl = document.querySelector("#js-expan-goblins-el")
-const expanKnightsEl = document.querySelector("#js-expan-knights-el")
-const expanTeensEl = document.querySelector("#js-expan-teens-el")
-
-
-const btnEl = document.querySelector("#js-randomize-btn")
-const playerCt2El =  document.querySelector("#js-player-ct-two")
-const playerCt3El =  document.querySelector("#js-player-ct-three")
-const playerCt4El =  document.querySelector("#js-player-ct-four")
-const player1El = document.querySelector("#js-factions__player1-el")
-const player2El = document.querySelector("#js-factions__player2-el")
-const player3El = document.querySelector("#js-factions__player3-el")
-const player4El = document.querySelector("#js-factions__player4-el")
-const alertEl = document.querySelector("#js-alert")
-
-expanCoreEl.addEventListener("change", function() {
-    activeArray = expanCore
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expan10thAnniversaryEl.addEventListener("change", function() {
-    activeArray = expan10thAnniversary
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanMoviesEl.addEventListener("change", function() {
-    activeArray = expanMovies
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanAwesome9000El.addEventListener("change", function() {
-    activeArray = expanAwesome9000
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanScienceFictionEl.addEventListener("change", function() {
-    activeArray = expanScienceFiction
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanMonsterSmashEl.addEventListener("change", function() {
-    activeArray = expanMonsterSmash
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanPrettyEl.addEventListener("change", function() {
-    activeArray = expanPretty
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanItsYourFaultEl.addEventListener("change", function() {
-    activeArray = expanItsYourFault
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanCeaseDesistEl.addEventListener("change", function() {
-    activeArray = expanCeaseDesist
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanWhatWeThinkingEl.addEventListener("change", function() {
-    activeArray = expanWhatWeThinking
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanBigJapanEl.addEventListener("change", function() {
-    activeArray = expanBigJapan
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanThat70sEl.addEventListener("change", function() {
-    activeArray = expanThat70s
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanOopsAgainEl.addEventListener("change", function() {
-    activeArray = expanOopsAgain
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanWtInternationalEl.addEventListener("change", function() {
-    activeArray = expanWtInternational
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanWtCultureEl.addEventListener("change", function() {
-    activeArray = expanWtCulture
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanCthulhuEl.addEventListener("change", function() {
-    activeArray = expanCthulhu
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanMunchkinEl.addEventListener("change", function() {
-    activeArray = expanMunchkin
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanMarvelEl.addEventListener("change", function() {
-    activeArray = expanMarvel
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanDisneyEl.addEventListener("change", function() {
-    activeArray = expanDisney
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanGeeksEl.addEventListener("change", function() {
-    activeArray = expanGeeks
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanAllStarsEl.addEventListener("change", function() {
-    activeArray = expanAllStars
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanSheepEl.addEventListener("change", function() {
-    activeArray = expanSheep
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanPenguinsEl.addEventListener("change", function() {
-    activeArray = expanPenguins
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanGoblinsEl.addEventListener("change", function() {
-    activeArray = expanGoblins
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanKnightsEl.addEventListener("change", function() {
-    activeArray = expanKnights
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-expanTeensEl.addEventListener("change", function() {
-    activeArray = expanTeens
-    if (this.checked) {
-        addExpan()
-    } else {
-        removeExpan()
-    }
-})
-
-btnEl.addEventListener("click", function () {
-    renderFactions()
-})
-
-function renderFactions() {
-    setPool()
-    let htmlPlayer1 = `<h3 class="heading heading--small">Player 2</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
-    let htmlPlayer2 = `<h3 class="heading heading--small">Player 2</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
-    let htmlPlayer3 = `<h3 class="heading heading--small">Player 3</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
-    let htmlPlayer4 = `<h3 class="heading heading--small">Player 4</h3><p>${getFaction()}</p><p>${getFaction()}</p>`
-    let htmlReset = ``
-    player1El.innerHTML = htmlReset
-    player2El.innerHTML = htmlReset
-    player3El.innerHTML = htmlReset
-    player4El.innerHTML = htmlReset
-    alertEl.textContent = ""
-    if (playerCt2El.checked) {
-        player1El.innerHTML = htmlPlayer1
-        player2El.innerHTML = htmlPlayer2
-        player3El.innerHTML = htmlReset
-        player4El.innerHTML = htmlReset
-    } else if (playerCt3El.checked) {
-        if (factionList.length >= 6) {
-            player1El.innerHTML = htmlPlayer1
-            player2El.innerHTML = htmlPlayer2
-            player3El.innerHTML = htmlPlayer3
-            player4El.innerHTML = htmlReset
-        } else {
-        alertEl.textContent = "Not enough factions. Please select another expansion"
-        }
-    } else if (playerCt4El.checked) {
-        if (factionList.length >= 8) {
-            player1El.innerHTML = htmlPlayer1
-            player2El.innerHTML = htmlPlayer2
-            player3El.innerHTML = htmlPlayer3
-            player4El.innerHTML = htmlPlayer4
-        } else {
-        alertEl.textContent = "Not enough factions. Please select another expansion"
-        }
-    } else {
-        alertEl.textContent = "Please select number of players"
-    }
-}
-
-function addExpan() {
-    for(let i = 0; i < activeArray.length; i++) {
-        factionList.push(activeArray[i])
-    }
-}
-
-function removeExpan() {
-    for(let i = 0; i < activeArray.length; i++) {
-        let removeItem = factionList.indexOf(activeArray[i])
-        factionList.splice(removeItem, 1)
-    }
-}
-
-function getFaction() {
-    let i = Math.floor(Math.random() * pool.length)
-    let faction = pool[i]
-    pool.splice([i], 1)
-    return faction
+function chooseFactions() {
+    renderHTML(players, playerCT)
 }
 
 function setPool() {
-    pool = []
-    for(let i = 0; i < factionList.length; i++) {
-        pool.push(factionList[i])
+    for(let i = 0; i < expansions.length; i++) {
+        if(expansions[i].docEl.checked) {
+            pushFaction(expansions[i].factions)
+        }
+    }
 }
+
+function pushFaction(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        factionList.push(arr[i])
+        console.log(factionList)
+    }
 }
+
+function renderHTML(player, count) {
+    console.log(count)
+    for(let i = 0; i < count; i++) {
+        player[i].docEl.innerHTML = `<h3 class="heading heading--small">${player[i].name}</h3><p>${getFaction(factionList)}</p><p>${getFaction(factionList)}</p>`
+    }
+}
+
+
+function getFaction(arr) {
+    let n = Math.floor(Math.random() * arr.length)
+    let faction = arr[n]
+    arr.splice([n], 1)
+    return faction
+}
+
+function checkPlayers() {
+    let playerCT2El = document.querySelector("#js-player-ct-two")
+    let playerCT3El = document.querySelector("#js-player-ct-three")
+    let playerCT4El = document.querySelector("#js-player-ct-four")
+
+    if(playerCT2El.checked) {
+        playerCT = 2
+    } else if(playerCT3El.checked) {
+        playerCT = 3
+    } else if(playerCT4El.checked) {
+        playerCT = 4
+    }
+}
+
+function reset() {
+    factionList = []
+    for(let i = 0; i < players.length; i++) {
+        players[i].docEl.innerHTML = ""
+    }
+}
+
+btnEl.addEventListener("click", function() {
+    let alertText = `Not enough factions. Please choose another expansion`
+    reset()
+    setPool()
+    checkPlayers()
+    if(playerCT === 2 && factionList.length < 4) {
+        alertEl.textContent = alertText
+    } else if(playerCT === 3 && factionList.length < 6) {
+        alertEl.textContent = alertText
+    } else if(playerCT === 4 && factionList.length < 8) {
+        alertEl.textContent = alertText
+    } else {
+        alertEl.textContent = ""
+        chooseFactions()
+    }
+})
