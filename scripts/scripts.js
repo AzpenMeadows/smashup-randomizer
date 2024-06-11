@@ -151,19 +151,18 @@ let expansions = [
 ]
 
 let factionList = []
-const btnEl = document.querySelector("#js-randomize-btn")
+let playerCT = 0
+let alertEl = document.querySelector("#js-alert")
+let btnEl = document.querySelector("#js-randomize-btn")
 
 function chooseFactions() {
-    resetHTML(players)
-    setPool()
-    renderHTML(players)
+    renderHTML(players, playerCT)
 }
 
 function setPool() {
     for(let i = 0; i < expansions.length; i++) {
         if(expansions[i].docEl.checked) {
             pushFaction(expansions[i].factions)
-            // console.log(expansions[i].factions)
         }
     }
 }
@@ -175,17 +174,13 @@ function pushFaction(arr) {
     }
 }
 
-function renderHTML(player) {
-    for(let i = 0; i < player.length; i++) {
+function renderHTML(player, count) {
+    console.log(count)
+    for(let i = 0; i < count; i++) {
         player[i].docEl.innerHTML = `<h3 class="heading heading--small">${player[i].name}</h3><p>${getFaction(factionList)}</p><p>${getFaction(factionList)}</p>`
     }
 }
 
-function resetHTML(player) {
-    for(let i = 0; i < player.length; i++) {
-        player[i].docEl.innerHTML = `""`
-    }
-}
 
 function getFaction(arr) {
     let n = Math.floor(Math.random() * arr.length)
@@ -194,6 +189,40 @@ function getFaction(arr) {
     return faction
 }
 
+function checkPlayers() {
+    let playerCT2El = document.querySelector("#js-player-ct-two")
+    let playerCT3El = document.querySelector("#js-player-ct-three")
+    let playerCT4El = document.querySelector("#js-player-ct-four")
+
+    if(playerCT2El.checked) {
+        playerCT = 2
+    } else if(playerCT3El.checked) {
+        playerCT = 3
+    } else if(playerCT4El.checked) {
+        playerCT = 4
+    }
+}
+
+function reset() {
+    factionList = []
+    for(let i = 0; i < players.length; i++) {
+        players[i].docEl.innerHTML = ""
+    }
+}
+
 btnEl.addEventListener("click", function() {
-    chooseFactions()
+    let alertText = `Not enough factions. Please choose another expansion`
+    reset()
+    setPool()
+    checkPlayers()
+    if(playerCT === 2 && factionList.length < 4) {
+        alertEl.textContent = alertText
+    } else if(playerCT === 3 && factionList.length < 6) {
+        alertEl.textContent = alertText
+    } else if(playerCT === 4 && factionList.length < 8) {
+        alertEl.textContent = alertText
+    } else {
+        alertEl.textContent = ""
+        chooseFactions()
+    }
 })
