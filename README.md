@@ -9,15 +9,15 @@ Create an app to randomly choose factions for players
 
 ## Project Links
 
-- [Live app]()
+- [Live app](https://smashuprandomizer.netlify.app/)
 
 
 ## Features
 
 - Add factions to pool by selecting owned expansions
 - Choose between 2 and 4 players
-- Distribute factions in the order specified in Smash Up rules
-- Option to reroll
+- Distribute two factions to each player
+- Fast randomize roll--ZERO DELAY!
 
 ## Author
 Created by Jason Konrad
